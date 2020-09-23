@@ -1,2 +1,18 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<p><label id="labelOne"> </label></p>
+<p>{{carsJSON}}</p>
+<p>{{usersJSON}}</p>
+<p>{{rentedJSON}}</p>
+
+<script>
+var carsJSON='{{{carsJSON}}}';
+var usersJSON='{{{usersJSON}}}';
+var rentedJSON='{{{rentedJSON}}}';
+
+var cars=JSON.parse(carsJSON);
+var users=JSON.parse(usersJSON);
+var rented=JSON.parse(rentedJSON);
+
+document.getElementById('labelOne').innerHTML=cars["zero"]["producer"];
+</script>
