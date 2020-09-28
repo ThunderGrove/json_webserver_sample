@@ -5,6 +5,12 @@
 <p>{{usersJSON}}</p>
 <p>{{rentedJSON}}</p>
 
+<h2>Cars</h2>
+<table id="cars"><tr><td>Car:</td><td>Status:</td></tr></table>
+
+<h2>Clients</h2>
+<table id="clients"><tr><td>Client:</td><td>Status:</td></tr></table>
+
 <script>
 var carsJSON='{{{carsJSON}}}';
 var usersJSON='{{{usersJSON}}}';
@@ -14,5 +20,78 @@ var cars=JSON.parse(carsJSON);
 var users=JSON.parse(usersJSON);
 var rented=JSON.parse(rentedJSON);
 
-document.getElementById('labelOne').innerHTML=cars["zero"]["producer"];
+//Add row to a table.
+function addToTable(tableID,first,second){
+  document.getElementById(tableID).innerHTML+='<tr><td>'+first+'</td><td>'+second+'</td></tr>'
+}
+
+if(rented.zero[0]==0||rented.one[0]==0){
+  addToTable("cars",cars.zero[0]["producer"]+" "+cars.zero[0]["model"],"Rented");
+}else{
+  addToTable("cars",cars.zero[0]["producer"]+" "+cars.zero[0]["model"],"accessible");
+}
+
+if(rented.zero[0]==1||rented.one[0]==1){
+  addToTable("cars",cars.one[0]["producer"]+" "+cars.one[0]["model"],"Rented");
+}else{
+  addToTable("cars",cars.one[0]["producer"]+" "+cars.one[0]["model"],"accessible");
+}
+
+if(rented.zero[0]==2||rented.one[0]==2){
+  addToTable("cars",cars.two[0]["producer"]+" "+cars.two[0]["model"],"Rented");
+}else{
+  addToTable("cars",cars.two[0]["producer"]+" "+cars.two[0]["model"],"accessible");
+}
+
+
+
+if(rented.zero[1]==0||rented.one[1]==0){
+  var temp="";
+
+  if(rented.zero[1]==0&&rented.zero[0]==0||rented.one[1]==0&&rented.one[0]==0){
+    temp=cars.zero[0]["producer"]+" "+cars.zero[0]["model"];
+  }else if(rented.zero[1]==0&&rented.zero[0]==1||rented.one[1]==0&&rented.one[0]==1){
+    temp=cars.one[0]["producer"]+" "+cars.one[0]["model"];
+  }else if(rented.zero[1]==0&&rented.zero[0]==2||rented.one[1]==0&&rented.one[0]==2){
+    temp=cars.two[0]["producer"]+" "+cars.two[0]["model"];
+  }
+
+  addToTable("clients",users.zero[0]["name"],"Rented "+temp);
+}else{
+  addToTable("clients",users.zero[0]["name"],"accNo rented caressible");
+}
+
+if(rented.zero[1]==1||rented.one[1]==1){
+  var temp="";
+
+  if(rented.zero[1]==1&&rented.zero[0]==0||rented.one[1]==1&&rented.one[0]==0){
+    temp=cars.zero[0]["producer"]+" "+cars.zero[0]["model"];
+  }else if(rented.zero[1]==1&&rented.zero[0]==1||rented.one[1]==1&&rented.one[0]==1){
+    temp=cars.one[0]["producer"]+" "+cars.one[0]["model"];
+  }else if(rented.zero[1]==1&&rented.zero[0]==2||rented.one[1]==1&&rented.one[0]==2){
+    temp=cars.two[0]["producer"]+" "+cars.two[0]["model"];
+  }
+
+  addToTable("clients",users.one[0]["name"],"Rented "+temp);
+}else{
+  addToTable("clients",users.one[0]["name"],"No rented car");
+}
+
+if(rented.zero[1]==2||rented.one[1]==2){
+  var temp="";
+
+  if(rented.zero[1]==2&&rented.zero[0]==0||rented.one[1]==2&&rented.one[0]==0){
+    temp=cars.zero[0]["producer"]+" "+cars.zero[0]["model"];
+  }else if(rented.zero[1]==2&&rented.zero[0]==1||rented.one[1]==2&&rented.one[0]==1){
+    temp=cars.one[0]["producer"]+" "+cars.one[0]["model"];
+  }else if(rented.zero[1]==2&&rented.zero[0]==2||rented.one[1]==2&&rented.one[0]==2){
+    temp=cars.two[0]["producer"]+" "+cars.two[0]["model"];
+  }
+
+  addToTable("clients",users.two[0]["name"],"Rented "+temp);
+}else{
+  addToTable("clients",users.two[0]["name"],"No rented car");
+}
+
+document.getElementById('labelOne').innerHTML=cars.one[0]["producer"];
 </script>

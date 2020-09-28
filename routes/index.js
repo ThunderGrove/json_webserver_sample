@@ -2,36 +2,40 @@ var express=require('express');
 var router=express.Router();
 
 var cars={
-  zero:[{
-    producer:"Volvo",
-    model:"480"
+  "zero":[{
+    "producer":"Volvo",
+    "model":"480"
   }],
-  one:[{
-    producer:"Volvo",
-    model:"440"
+  "one":[{
+    "producer":"Volvo",
+    "model":"440"
   }],
-  two:[{
-    producer:"Volvo",
-    model:"460"
+  "two":[{
+    "producer":"Volvo",
+    "model":"460"
   }]};
 
 var carsJSON=JSON.stringify(cars);
 
 var users={
-  0:[{
+  "zero":[{
     username:"johndoe",
-    name:"john"
+    name:"John"
   }],
-  1:[{
+  "one":[{
     username:"janedoe",
     name:"Jane"
+  }],
+  "two":[{
+    username:"harrypotter",
+    name:"Harry"
   }]};
 
 var usersJSON=JSON.stringify(users);
 
 var rented={
-  0:[2,1],
-  1:[1,0]
+  "zero":[2,1],
+  "one":[1,0]
 };
 
 var rentedJSON=JSON.stringify(rented);
